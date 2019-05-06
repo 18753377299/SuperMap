@@ -1,20 +1,10 @@
 package createDataSource;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import com.supermap.data.DatasetVector;
 import com.supermap.data.Datasource;
 import com.supermap.data.DatasourceConnectionInfo;
 import com.supermap.data.EngineType;
-import com.supermap.data.Feature;
-import com.supermap.data.GeoRegion;
-import com.supermap.data.Geometry;
-import com.supermap.data.QueryParameter;
-import com.supermap.data.Recordset;
-import com.supermap.data.SpatialQueryMode;
-import com.supermap.data.Toolkit;
+import com.supermap.data.GeoCircle;
 import com.supermap.data.Workspace;
 	/**
  * @author  作者 E-mail: 
@@ -37,7 +27,21 @@ public class OperateDataSource {
 		openDataSource();
 		
 		/*创建数据源*/
-		createDataSource();
+//		createDataSource();
+		
+		/*创建面数据集*/
+		createDataSet();
+		
+	}
+	/*创建面数据集*/
+	public static void createDataSet(){
+		double radius = 22.22;
+		
+		GeoCircle geoCircle =new GeoCircle();
+		geoCircle.setRadius(radius);
+		
+		/*将圆几何对象转换为面几何对象。*/
+		geoCircle.convertToRegion(50);
 		
 	}
 	
