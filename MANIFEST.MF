@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: lib/com.supermap.data.jar
+Main-Class: dissolveDatasetVector.DatasetTest
+
+
