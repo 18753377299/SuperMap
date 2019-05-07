@@ -44,7 +44,7 @@ public class OperateDataSetMySQL {
 		/*创建圆形 的面数据集*/
 		createRegionDataSet();
 		/*读取圆形 的面数据集*/
-		getRegionDataSet();
+//		getRegionDataSet();
 	}
 	
 	/*读取圆形 的面数据集*/
@@ -155,7 +155,7 @@ public class OperateDataSetMySQL {
       DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
        //面数据集类型
       datasetVectorInfo.setType(DatasetType.REGION);
-	  datasetVectorInfo.setName("circleName2");
+	  datasetVectorInfo.setName("circleName5");
 	  
 	  DatasetVector datasetVector = datasets.create(datasetVectorInfo);
 	  
@@ -169,6 +169,7 @@ public class OperateDataSetMySQL {
 	  
 	  Recordset recordset = datasetVector.getRecordset(false, CursorType.DYNAMIC);
 	  
+	  recordset.edit();
 	  
 	  FieldInfos  fieldInfosold = datasetVector.getFieldInfos();
 	 
@@ -190,24 +191,47 @@ public class OperateDataSetMySQL {
 		  System.out.println("字段值："+i+":"+name+":"+value);
 	  }
       
-	  	/*初始化半径*/
-		double radius = 22.22;
-		/*设置中心点坐标*/
-		Point2D  point2D =new Point2D(116, 39);
-		
-		GeoCircle geoCircle =new GeoCircle();
-		geoCircle.setRadius(radius);
-		geoCircle.setCenter(point2D);
-		
-		/*将圆几何对象转换为面几何对象。*/
-		GeoRegion geoRegion = geoCircle.convertToRegion(50);
-	  
-		recordset.addNew(geoRegion);
-	    
+//	  	/*初始化半径*/
+//		double radius = 22.22;
+//		/*设置中心点坐标*/
+//		Point2D  point2D =new Point2D(116, 39);
+//		
+//		GeoCircle geoCircle =new GeoCircle();
+//		geoCircle.setRadius(radius);
+//		geoCircle.setCenter(point2D);
+//		
+//		/*将圆几何对象转换为面几何对象。*/
+//		GeoRegion geoRegion = geoCircle.convertToRegion(50);
+//		
+//		/*初始化半径*/
+//		double radius1 = 11;
+//		/*设置中心点坐标*/
+//		Point2D  point2D1 =new Point2D(109, 36);
+//		
+//		GeoCircle geoCircle1 =new GeoCircle();
+//		geoCircle1.setRadius(radius1);
+//		geoCircle1.setCenter(point2D1);
+//		
+//		/*将圆几何对象转换为面几何对象。*/
+//		GeoRegion geoRegion1 = geoCircle1.convertToRegion(50);
+//	  
+//		recordset.addNew(geoRegion);
+//		// 没有这个数据集更新不能够成功
+//		recordset.update();
+//		recordset.addNew(geoRegion1);
+//		recordset.update();
+      
+      /**添加多个面数据集的方式*/
+       double  [][]dataList = {{22,116,36},{10,110,22}};
+       Recordset recordsetNew = addMoreRecordset(recordset ,dataList);
+       
+       if(recordsetNew!=null){
+    	   recordsetNew.close();
+    	   recordsetNew.dispose();
+		}
 	    if(fieldInfoNew!=null){
 	    	fieldInfoNew.dispose();
 		}
-	    
 		if(datasetVector!=null){
 			datasetVector.close();
 		}
@@ -226,5 +250,37 @@ public class OperateDataSetMySQL {
 		
 	}
 	
+	/**添加多个面数据集的方式*/
+	public static Recordset addMoreRecordset(Recordset recordset ,double  [][]dataList){
+		if(dataList.length>0){
+			for(int i=0;i<dataList.length;i++){
+				recordset.edit();
+				/*初始化半径*/
+				double radius = dataList[i][0];
+				/*设置中心点坐标*/
+				Point2D  point2D =new Point2D(dataList[i][1], dataList[i][2]);
+				
+				GeoCircle geoCircle =new GeoCircle();
+				geoCircle.setRadius(radius);
+				geoCircle.setCenter(point2D);
+				
+				/*将圆几何对象转换为面几何对象。*/
+				GeoRegion geoRegion = geoCircle.convertToRegion(50);
+				recordset.update();
+				recordset.addNew(geoRegion);
+				// 没有这个数据集更新不能够成功
+				recordset.update();
+				
+				if(geoRegion!=null){
+					geoRegion.clone();
+					geoRegion.dispose();
+				}
+				if(point2D!=null){
+					point2D.clone();
+				}
+			}
+		}
+		return  recordset;
+	}
 
 }
