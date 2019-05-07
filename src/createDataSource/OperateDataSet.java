@@ -9,9 +9,15 @@ import com.supermap.data.Datasource;
 import com.supermap.data.DatasourceConnectionInfo;
 import com.supermap.data.EngineType;
 import com.supermap.data.GeoCircle;
+import com.supermap.data.GeoCoordSys;
+import com.supermap.data.GeoCoordSysType;
 import com.supermap.data.GeoRegion;
+import com.supermap.data.GeoSpatialRefType;
 import com.supermap.data.Point2D;
+import com.supermap.data.PrjCoordSys;
+import com.supermap.data.PrjCoordSysType;
 import com.supermap.data.Recordset;
+import com.supermap.data.Unit;
 import com.supermap.data.Workspace;
 	/**
  * @author  作者 E-mail: 
@@ -68,9 +74,17 @@ public class OperateDataSet {
       DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
        //面数据集类型
       datasetVectorInfo.setType(DatasetType.REGION);
-	  datasetVectorInfo.setName("circleName");
+	  datasetVectorInfo.setName("circleName1");
 	  
 	  DatasetVector datasetVector = datasets.create(datasetVectorInfo);
+	  
+	  PrjCoordSys prjCoordSys = new PrjCoordSys();
+	  //地理经纬坐标
+	  prjCoordSys.setType(PrjCoordSysType.PCS_EARTH_LONGITUDE_LATITUDE );
+//	  GeoCoordSys geoCoordSys = new GeoCoordSys(GeoCoordSysType.GCS_CHINA_2000,GeoSpatialRefType.SPATIALREF_EARTH_LONGITUDE_LATITUDE );
+//	  prjCoordSys.setCoordUnit(Unit.KILOMETER); // 千米
+	  
+	  datasetVector.setPrjCoordSys(prjCoordSys);
 	  
 	  Recordset recordset = datasetVector.getRecordset(false, CursorType.DYNAMIC);
 	  
