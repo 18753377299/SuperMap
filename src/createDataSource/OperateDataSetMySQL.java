@@ -191,6 +191,7 @@ public class OperateDataSetMySQL {
 		  System.out.println("字段值："+i+":"+name+":"+value);
 	  }
       
+      
 //	  	/*初始化半径*/
 //		double radius = 22.22;
 //		/*设置中心点坐标*/
