@@ -8,16 +8,15 @@ import com.supermap.data.Datasets;
 import com.supermap.data.Datasource;
 import com.supermap.data.DatasourceConnectionInfo;
 import com.supermap.data.EngineType;
+import com.supermap.data.FieldInfo;
+import com.supermap.data.FieldInfos;
+import com.supermap.data.FieldType;
 import com.supermap.data.GeoCircle;
-import com.supermap.data.GeoCoordSys;
-import com.supermap.data.GeoCoordSysType;
 import com.supermap.data.GeoRegion;
-import com.supermap.data.GeoSpatialRefType;
 import com.supermap.data.Point2D;
 import com.supermap.data.PrjCoordSys;
 import com.supermap.data.PrjCoordSysType;
 import com.supermap.data.Recordset;
-import com.supermap.data.Unit;
 import com.supermap.data.Workspace;
 	/**
  * @author  作者 E-mail: 
@@ -74,7 +73,7 @@ public class OperateDataSet {
       DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
        //面数据集类型
       datasetVectorInfo.setType(DatasetType.REGION);
-	  datasetVectorInfo.setName("circleName1");
+	  datasetVectorInfo.setName("circleName5");
 	  
 	  DatasetVector datasetVector = datasets.create(datasetVectorInfo);
 	  
@@ -88,6 +87,24 @@ public class OperateDataSet {
 	  
 	  Recordset recordset = datasetVector.getRecordset(false, CursorType.DYNAMIC);
 	  
+	  FieldInfos  fieldInfos = recordset.getFieldInfos();
+	 
+	  // 实例化一个字段信息对象，对其进行设置
+      FieldInfo fieldInfoNew = new FieldInfo();
+      fieldInfoNew.setName("Pop_2009");
+      fieldInfoNew.setCaption("Pop_2009");
+      fieldInfoNew.setDefaultValue("0");
+      fieldInfoNew.setType(FieldType.DOUBLE);
+      fieldInfoNew.setRequired(true);
+      fieldInfos.add(fieldInfoNew);
+      
+      for(int i =0;i<fieldInfos.getCount();i++){
+		  FieldInfo  fieldInfo = fieldInfos.get(i);
+		  String  name = fieldInfo.getName();
+		  String  value = fieldInfo.getDefaultValue();
+		  System.out.println("字段值："+i+":"+name+":"+value);
+	  }
+      
 	  	/*初始化半径*/
 		double radius = 22.22;
 		/*设置中心点坐标*/
@@ -101,7 +118,10 @@ public class OperateDataSet {
 		GeoRegion geoRegion = geoCircle.convertToRegion(50);
 	  
 	    recordset.addNew(geoRegion);
-		
+	    
+	    if(fieldInfoNew!=null){
+	    	fieldInfoNew.dispose();
+		}
 	    
 		if(datasetVector!=null){
 			datasetVector.close();
