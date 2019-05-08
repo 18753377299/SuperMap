@@ -76,8 +76,6 @@ public class OperateDataSetMySQL {
       DatasetVector datasetVector = (DatasetVector)datasource.getDatasets().get("circleName1");
 //      Recordset recordset = datasetVector.getRecordset(false, CursorType.DYNAMIC);
 	  
-	
-	 
 	  // 实例化一个字段信息对象，对其进行设置
       FieldInfo fieldInfoNew = new FieldInfo();
       fieldInfoNew.setName("Pop_2009");
