@@ -109,18 +109,20 @@ public class MapUtils {
 //        editor.begin();
 		Recordset recordset = datasetVector.getRecordset(false, CursorType.DYNAMIC);
 		
+		double  [][]dataList = {{22,116,36},{10,110,22}};
+		
 		if(dataList.length>0){
 			for(int i=0;i<dataList.length;i++){
 				Map<String , Object> map =new HashMap<String, Object>();
 				
 				recordset.edit();
 				/*初始化半径*/
-				double radius = dataList[i][0];
+				double radiusN = dataList[i][0];
 				/*设置中心点坐标*/
 				Point2D  point2D =new Point2D(dataList[i][1], dataList[i][2]);
 				
 				GeoCircle geoCircle =new GeoCircle();
-				geoCircle.setRadius(radius);
+				geoCircle.setRadius(radiusN);
 				geoCircle.setCenter(point2D);
 				
 				/*将圆几何对象转换为面几何对象。*/
@@ -146,9 +148,9 @@ public class MapUtils {
 
 		return  recordset;
 	}
-	
-	public String getRadius(String radius,WzTFLslj wzTFLslj){
-		String  radiusData = "";
+	/*通过get请求来获取某个类中的字段的值*/
+	public static Object getRadius(String radius,Object wzTFLslj){
+		Object  radiusData = "";
 		try {
 			Class wzclass = wzTFLslj.getClass();
 			String radiusName = "get"+radius.substring(0,1).toUpperCase()+radius.substring(1);

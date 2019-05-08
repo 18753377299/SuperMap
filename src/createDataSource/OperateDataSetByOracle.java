@@ -53,9 +53,17 @@ public class OperateDataSetByOracle {
 	
 	public static void main(String[]args){
 		/*创建oracle数据库连接*/
-		createOracleConnection();
+//		createOracleConnection();
 		/*创建圆形 的面数据集*/
 //		createRegionDataSet();
+		
+		WzTFLslj wzTFLslj =new WzTFLslj();
+		wzTFLslj.setRadius7("11");
+		wzTFLslj.setRadius10("22");
+		String data = MapUtils.getRadius("radius7",wzTFLslj).toString();
+		String data1= MapUtils.getRadius("radius10",wzTFLslj).toString();
+		System.out.println("================="+data+":"+data1);
+		
 	}
 	
 	public static void createOracleConnection(){
