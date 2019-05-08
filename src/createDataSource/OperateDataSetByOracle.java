@@ -128,13 +128,19 @@ public class OperateDataSetByOracle {
         /**添加多个面数据集的方式*/
         double  [][]dataList = {{22,116,36},{10,110,22}};
         /*给面数据集增加数据*/
-        Recordset recordsetNew= MapUtils.addDataToDatasetVector(datasetVector_7,wzTFLsljsList);
+        Recordset recordset_7= MapUtils.addDataToDatasetVector(datasetVector_7,wzTFLsljsList,"radius7");
         
-//        Recordset recordsetNew = addMoreRecordset(datasetVector_7 ,dataList);
+        Recordset recordset_10= MapUtils.addDataToDatasetVector(datasetVector_10,wzTFLsljsList,"radius10");
         
-        if(recordsetNew!=null){
-    	   recordsetNew.close();
-    	   recordsetNew.dispose();
+//       Recordset recordsetNew = addMoreRecordset(datasetVector_7 ,dataList);
+        
+        if(recordset_10!=null){
+        	recordset_10.close();
+        	recordset_10.dispose();
+		}
+        if(recordset_7!=null){
+        	recordset_7.close();
+        	recordset_7.dispose();
 		}
 //	    if(fieldInfoNew!=null){
 //	    	fieldInfoNew.dispose();

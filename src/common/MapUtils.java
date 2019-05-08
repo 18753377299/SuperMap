@@ -1,5 +1,6 @@
 package common;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,7 +101,7 @@ public class MapUtils {
 	}
 	
 	/*给面数据集增加数据*/
-	public static Recordset addDataToDatasetVector (DatasetVector datasetVector,List<WzTFLslj>  wzTFLsljsList){
+	public static Recordset addDataToDatasetVector (DatasetVector datasetVector,List<WzTFLslj>  wzTFLsljsList,String radius){
 //		BatchEditor editor = recordset.getBatch();
 //		// 设置批量更新每次提交的记录数目
 //        editor.setMaxRecordCount(50);
@@ -145,6 +146,22 @@ public class MapUtils {
 
 		return  recordset;
 	}
+	
+	public String getRadius(String radius,WzTFLslj wzTFLslj){
+		String  radiusData = "";
+		try {
+			Class wzclass = wzTFLslj.getClass();
+			String radiusName = "get"+radius.substring(0,1).toUpperCase()+radius.substring(1);
+			Method method= wzclass.getDeclaredMethod(radiusName,null);
+			method.setAccessible(true);
+			radiusData = (String)method.invoke(wzTFLslj, null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return radiusData;
+	}
+	
 	
 	
 }
