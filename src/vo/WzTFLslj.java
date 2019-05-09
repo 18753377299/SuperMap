@@ -18,7 +18,7 @@ public class WzTFLslj implements Serializable{
 	private String wd;
 	private String jd;
 	private String zxqy;
-	private String zxfS;
+	private String zxfs;
 	private String ydsd;
 	private String ydfx;
 	private String radius7;
@@ -56,11 +56,12 @@ public class WzTFLslj implements Serializable{
 	public void setZxqy(String zxqy) {
 		this.zxqy = zxqy;
 	}
-	public String getZxfS() {
-		return zxfS;
+	
+	public String getZxfs() {
+		return zxfs;
 	}
-	public void setZxfS(String zxfS) {
-		this.zxfS = zxfS;
+	public void setZxfs(String zxfs) {
+		this.zxfs = zxfs;
 	}
 	public String getYdsd() {
 		return ydsd;

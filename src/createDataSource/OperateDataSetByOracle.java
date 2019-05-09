@@ -14,22 +14,13 @@ import java.util.Map;
 import vo.WzTFLslj;
 
 import com.supermap.data.CursorType;
-import com.supermap.data.DatasetType;
 import com.supermap.data.DatasetVector;
-import com.supermap.data.DatasetVectorInfo;
-import com.supermap.data.Datasets;
 import com.supermap.data.Datasource;
 import com.supermap.data.DatasourceConnectionInfo;
-import com.supermap.data.EngineType;
-import com.supermap.data.FieldInfo;
-import com.supermap.data.FieldInfos;
-import com.supermap.data.FieldType;
 import com.supermap.data.GeoCircle;
 import com.supermap.data.GeoRegion;
 import com.supermap.data.Geometry;
 import com.supermap.data.Point2D;
-import com.supermap.data.PrjCoordSys;
-import com.supermap.data.PrjCoordSysType;
 import com.supermap.data.Recordset;
 import com.supermap.data.Workspace;
 import common.MapUtils;
@@ -53,16 +44,16 @@ public class OperateDataSetByOracle {
 	
 	public static void main(String[]args){
 		/*创建oracle数据库连接*/
-//		createOracleConnection();
+		createOracleConnection();
 		/*创建圆形 的面数据集*/
 //		createRegionDataSet();
 		
-		WzTFLslj wzTFLslj =new WzTFLslj();
-		wzTFLslj.setRadius7("11");
-		wzTFLslj.setRadius10("22");
-		String data = MapUtils.getRadius("radius7",wzTFLslj).toString();
-		String data1= MapUtils.getRadius("radius10",wzTFLslj).toString();
-		System.out.println("================="+data+":"+data1);
+//		WzTFLslj wzTFLslj =new WzTFLslj();
+//		wzTFLslj.setRadius7("11");
+//		wzTFLslj.setRadius10("22");
+//		String data = MapUtils.getRadius("radius7",wzTFLslj).toString();
+//		String data1= MapUtils.getRadius("radius10",wzTFLslj).toString();
+//		System.out.println("================="+data+":"+data1);
 		
 	}
 	
@@ -93,7 +84,7 @@ public class OperateDataSetByOracle {
         	   wzTFLslj.setWd(resultSet.getString("WD"));
         	   wzTFLslj.setJd(resultSet.getString("JD"));
         	   wzTFLslj.setZxqy(resultSet.getString("ZXQY"));
-        	   wzTFLslj.setZxfS(resultSet.getString("ZXFS"));
+        	   wzTFLslj.setZxfs(resultSet.getString("ZXFS"));
         	   wzTFLslj.setYdsd(resultSet.getString("YDSD"));
         	   wzTFLslj.setYdfx(resultSet.getString("YDFX"));
         	   wzTFLslj.setRadius7(resultSet.getString("RADIUS7"));
@@ -127,11 +118,16 @@ public class OperateDataSetByOracle {
 		//进行数据源的连接
 		Datasource datasource =MapUtils.connectDataSource(workspace,datasourceconnection,iobjectJavaServer,iobjectJavaDatabase,iobjectJavaUser,iobjectJavaPassword);
 	    // 创建面数据集
-		String dataSetName_7 = "",dataSetName_10="";
+		String dataSetName_7 = "TF_7M",dataSetName_10="TF_10M";
 		// 创建七级风圈数据集
 		DatasetVector datasetVector_7 =  MapUtils.createDataSet(dataSetName_7,datasource);
 		// 创建十级风圈数据集
 		DatasetVector datasetVector_10 =  MapUtils.createDataSet(dataSetName_10,datasource);
+		
+		//为面数据集增加vo类中的字段
+		WzTFLslj wzTFLslj =new WzTFLslj();
+		MapUtils.addFieldInfo(datasetVector_7,wzTFLslj);
+		MapUtils.addFieldInfo(datasetVector_10,wzTFLslj);
 		
         /**添加多个面数据集的方式*/
         double  [][]dataList = {{22,116,36},{10,110,22}};
@@ -142,6 +138,10 @@ public class OperateDataSetByOracle {
         
 //       Recordset recordsetNew = addMoreRecordset(datasetVector_7 ,dataList);
         
+//       if(recordsetNew!=null){
+//    	   recordsetNew.close();
+//    	   recordsetNew.dispose();
+//       }
         if(recordset_10!=null){
         	recordset_10.close();
         	recordset_10.dispose();
@@ -207,11 +207,7 @@ public class OperateDataSetByOracle {
 				recordset.update();
 				
 				if(geoRegion!=null){
-					geoRegion.clone();
 					geoRegion.dispose();
-				}
-				if(point2D!=null){
-					point2D.clone();
 				}
 			}
 		}
