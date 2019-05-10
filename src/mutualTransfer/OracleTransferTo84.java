@@ -17,7 +17,8 @@ import common.MapTransferUtils;
  * @since  
  * @return  */
 public class OracleTransferTo84 {
-	public static String driverClassName = "oracle.jdbc.driver.OracleDriver";
+	
+	public static String driverClassName = "oracle.jdbc.OracleDriver";
 	public static String oracleName="jdbc:oracle:thin:@10.10.68.248:1521:orcl";
 	public static String username="riskcontrol_freeze";
 	public static String password="riskcontrol_freeze";
@@ -151,7 +152,7 @@ class MoreThreadTo84 extends Thread {
 //	private static final String riskMapAddress = "SMDTV_2";
 //	private static final String serverNameAddress = "http://10.10.1.156:8090/";
 	
-	public static String driverClassName = "oracle.jdbc.driver.OracleDriver";
+	public static String driverClassName = "oracle.jdbc.OracleDriver";
 	public static String oracleName="jdbc:oracle:thin:@10.10.68.248:1521:orcl";
 	public static String username="riskcontrol_freeze";
 	public static String password="riskcontrol_freeze";

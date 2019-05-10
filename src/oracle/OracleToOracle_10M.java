@@ -9,30 +9,24 @@ import java.sql.SQLException;
 
 
 public class OracleToOracle_10M {
+	
 	public static void main(String [] args){
 		Connection connect = null;
 //        Statement statement = null;
         PreparedStatement preState = null;
         ResultSet resultSet = null;
 		try {
-   
 //           Class.forName("oracle.jdbc.OracleDriver");
-			 Class.forName("oracle.jdbc.driver.OracleDriver");
-
-//           Driver driver = new OracleDriver();
-//           DriverManager.deregisterDriver(driver);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
            
-           connect = DriverManager.getConnection("jdbc:oracle:thin:@10.133.174.52:1521:fxdb", "spider", "spider");           
+           connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol_freeze", "riskcontrol_freeze");           
 
           
            System.out.println(connect);  
-
-
            
-//           statement = connect.createStatement();
-
+//         statement = connect.createStatement();
           
-           String sql = "select * from fxuser.TF_10M where TFBH=201822";
+           String sql = "select * from SMDTV_21 ";
 //           PreparedStatement preState = connect.prepareStatement("select  * from tb1_dept where id = ?");
            preState = connect.prepareStatement(sql);
 
@@ -58,23 +52,30 @@ public class OracleToOracle_10M {
                Integer  SMLIBTILEID = resultSet.getInt("SMLIBTILEID");
                BigDecimal SMAREA = new BigDecimal(resultSet.getString("SMAREA"));
                BigDecimal SMPERIMETER = new BigDecimal(resultSet.getString("SMPERIMETER"));
-              
-               Integer  PID = resultSet.getInt("PID");
-               String  TFBH = resultSet.getString("TFBH");
                
-               System.out.println(SMID+"   "+SMKEY+"   "+SMSDRIW);  
+               String  ADMINCODE = resultSet.getString("ADMINCODE");
+               String  KIND = resultSet.getString("KIND");
+               String  NAME = resultSet.getString("NAME");
+               String  PY = resultSet.getString("PY");
+               String  CITYADCODE = resultSet.getString("CITYADCODE");
+               String  PROADCODE = resultSet.getString("PROADCODE");
+               BigDecimal CENTERX = new BigDecimal(resultSet.getString("CENTERX"));
+               BigDecimal CENTERY = new BigDecimal(resultSet.getString("CENTERY"));
+               BigDecimal LEVELFLAG = new BigDecimal(resultSet.getString("LEVELFLAG"));
+               
+               String  PROVINCENAME = resultSet.getString("PROVINCENAME");
+               String  CITYNAME = resultSet.getString("CITYNAME");
+               System.out.println(SMID+"   "+SMKEY+"   "+SMSDRIW); 
+               
                OracleToOracle_10M.insertData(SMID,SMKEY,SMSDRIW,SMSDRIN,SMSDRIE,SMSDRIS,SMGRANULE,SMGEOMETRY,
-            		   SMUSERID,SMLIBTILEID,SMAREA,SMPERIMETER,PID,TFBH);
+            		   SMUSERID,SMLIBTILEID,SMAREA,SMPERIMETER,
+            		  ADMINCODE,KIND, NAME,PY,CITYADCODE,PROADCODE,CENTERX,CENTERY,LEVELFLAG,PROVINCENAME, CITYNAME);
            }
        } catch (Exception e) {
            e.printStackTrace();
        }finally {
-          
                try {
                    if (resultSet!=null) resultSet.close();
-                   
-//                   if (statement!=null) statement.close();
-//                  
                    if (preState!=null) preState.close();
                    if (connect!=null) connect.close();
                } catch (SQLException e) {
@@ -82,21 +83,25 @@ public class OracleToOracle_10M {
                }
        }
 	}
-//	public static void insertData (Integer SMID,Integer SMKEY,BigDecimal SMSDRIW ,byte[] SMGEOMETRY){
+//	public static void 	insertData(Integer SMID,Integer SMKEY,BigDecimal SMSDRIW,BigDecimal SMSDRIN,BigDecimal SMSDRIE,
+//			BigDecimal SMSDRIS,BigDecimal SMGRANULE,byte[] SMGEOMETRY,Integer  SMUSERID,Integer  SMLIBTILEID,
+//			BigDecimal SMAREA,BigDecimal SMPERIMETER,Integer PID,String TFBH){	
 	public static void 	insertData(Integer SMID,Integer SMKEY,BigDecimal SMSDRIW,BigDecimal SMSDRIN,BigDecimal SMSDRIE,
 			BigDecimal SMSDRIS,BigDecimal SMGRANULE,byte[] SMGEOMETRY,Integer  SMUSERID,Integer  SMLIBTILEID,
-			BigDecimal SMAREA,BigDecimal SMPERIMETER,Integer PID,String TFBH){	
+			BigDecimal SMAREA,BigDecimal SMPERIMETER,
+			String  ADMINCODE,String  KIND, String  NAME,String  PY,String  CITYADCODE, String  PROADCODE,BigDecimal CENTERX,
+			BigDecimal CENTERY,BigDecimal LEVELFLAG,String  PROVINCENAME,String  CITYNAME){	
 		Connection connect = null;
 //      Statement statement = null;
 		PreparedStatement preState = null;
 		ResultSet resultSet = null;
 		 try {
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@10.133.198.50:1521/fcfk ", "fcfkdb", "fcfkdb_1009");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol", "riskcontrol");
 
-			
-			String sql = "insert into TF_10M(SMID,SMKEY,SMSDRIW,SMSDRIN,SMSDRIE,SMSDRIS,SMGRANULE,SMGEOMETRY,SMUSERID,SMLIBTILEID,SMAREA,SMPERIMETER,PID,TFBH)"
-					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into SMDTV_172(SMID,SMKEY,SMSDRIW,SMSDRIN,SMSDRIE,SMSDRIS,SMGRANULE,SMGEOMETRY,SMUSERID,SMLIBTILEID,SMAREA,SMPERIMETER,"
+					+ "ADMINCODE,KIND, NAME,PY,CITYADCODE,PROADCODE,CENTERX,CENTERY,LEVELFLAG,PROVINCENAME, CITYNAME)"
+					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 //           PreparedStatement preState = connect.prepareStatement("select  * from tb1_dept where id = ?");
            preState = connect.prepareStatement(sql);
           
@@ -112,20 +117,27 @@ public class OracleToOracle_10M {
            preState.setInt(10, SMLIBTILEID);
            preState.setBigDecimal(11, SMAREA);
            preState.setBigDecimal(12, SMPERIMETER);
-           preState.setInt(13, PID);
-           preState.setString(14, TFBH);
+           
+           preState.setString(13, ADMINCODE);
+           preState.setString(14, KIND);
+           preState.setString(15, NAME);
+           preState.setString(16, PY);
+           preState.setString(17, CITYADCODE);
+           preState.setString(18, PROADCODE);
+           preState.setBigDecimal(19, CENTERX);
+           preState.setBigDecimal(20, CENTERY);
+           preState.setBigDecimal(21, LEVELFLAG);
+           preState.setString(22, PROVINCENAME);
+           preState.setString(23, CITYNAME);
            
            preState.executeUpdate();
 		   System.out.println("========success============");
 		}catch (Exception e) {
 	           e.printStackTrace();
         }finally {
-          
                try {
                    if (resultSet!=null) resultSet.close();
-                   
 //	                   if (statement!=null) statement.close();
-//	                  
                    if (preState!=null) preState.close();
                    if (connect!=null) connect.close();
                } catch (SQLException e) {
