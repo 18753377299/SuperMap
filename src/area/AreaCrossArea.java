@@ -50,7 +50,10 @@ public class AreaCrossArea {
 	    } else {
 	        System.out.println("数据源打开成功！");
 	    }
-		Geometry geome= Toolkit.GeoJsonToGemetry(riskMapMainVo.getGeometry());
+       //前台往后台传递的面数据
+//		Geometry geome= Toolkit.GeoJsonToGemetry(riskMapMainVo.getGeometry());
+		String geometryString  = ""; // 这是一个字符串类型的面数据
+		Geometry geome= Toolkit.GeoJsonToGemetry(geometryString);
 		GeoRegion geoRegion  =(GeoRegion)geome;
 		//设置查询参数
 		QueryParameter parameter = new QueryParameter();

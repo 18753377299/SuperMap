@@ -9,13 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.util.StreamUtils;
+import org.apache.commons.lang3.StringUtils;
 	/**
  * @author  作者 E-mail: 
  * @date 创建时间：2018年11月23日 上午10:36:02
