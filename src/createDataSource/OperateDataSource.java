@@ -95,6 +95,7 @@ public class OperateDataSource {
       Datasource datasource = workspace.getDatasources().open(datasourceconnection);
       // 获取的点数据集
       DatasetVector datasetVector = (DatasetVector)datasource.getDatasets().get("RISKMAP_ADDRESS");
+      
       if (datasource == null) {
           System.out.println("打开数据源失败");
       } else {

@@ -42,7 +42,7 @@ public class DatasetVectorUnion {
 		DatasetVector dtv1=(DatasetVector) datasets.get("DatasetVector1");
 		System.out.println(dtv.getName());
 		System.out.println(dtv1.getName());
-		 String name = datasets.getAvailableDatasetName("河流");
+		String name = datasets.getAvailableDatasetName("河流");
 //		// 设置矢量数据集的信息
         DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
         datasetVectorInfo.setName(name);

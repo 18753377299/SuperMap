@@ -33,7 +33,6 @@ import common.MapUtils;
  * @return  */
 public class OperateDataSetByOracle {
 	/*静态变量*/
-	
 	private static final  String  iobjectJavaServer = "10.10.68.248:1521/orcl";
 	private static final  String  iobjectJavaDatabase = "riskcontrol";
 	private static final  String  iobjectJavaUser = "riskcontrol";

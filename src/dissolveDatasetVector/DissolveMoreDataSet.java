@@ -16,7 +16,7 @@ import com.supermap.data.WorkspaceType;
  * @author  作者 E-mail: 
  * @date 创建时间：2019年4月2日 下午5:14:19
  * @version 1.0 
- * @parameter 
+ * @parameter   创建矢量数据集 
  * @since  
  * @return  */
 public class DissolveMoreDataSet {
