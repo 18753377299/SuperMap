@@ -1,8 +1,9 @@
 /area/
-/test/
+/com/
 /common/
-/mutualTransfer/
-/oracle/
-/vo/
 /createDataSource/
 /dissolveDatasetVector/
+/mutualTransfer/
+/oracle/
+/test/
+/vo/

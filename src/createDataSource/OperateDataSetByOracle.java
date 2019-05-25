@@ -39,8 +39,6 @@ public class OperateDataSetByOracle {
 	private static final  String  iobjectJavaPassword = "riskcontrol";
 	private static final  String  riskMap_address  = "SMDTV_60";
 	
-	
-	
 	public static void main(String[]args){
 		/*创建oracle数据库连接*/
 		createOracleConnection();
@@ -63,7 +61,7 @@ public class OperateDataSetByOracle {
 		ResultSet resultSet = null;
 		
 		 try {
-			 Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol", "riskcontrol");
 			
 //			String sql = "insert into TF_7M(SMID,SMKEY,SMSDRIW,SMSDRIN,SMSDRIE,SMSDRIS,SMGRANULE,SMGEOMETRY,SMUSERID,SMLIBTILEID,SMAREA,SMPERIMETER,PID,TFBH)"

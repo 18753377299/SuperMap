@@ -42,6 +42,7 @@ import com.supermap.data.Workspace;
 
 public class MapUtils {
 	
+	
 	/**连接数据源*/
 	public static Datasource connectDataSource(Workspace workspace,DatasourceConnectionInfo datasourceconnection,
 			String iobjectJavaServer,String iobjectJavaDatabase,String iobjectJavaUser,String iobjectJavaPassword){
@@ -99,7 +100,6 @@ public class MapUtils {
 //        editor.setMaxRecordCount(50);
 //        // 从 World 数据集中读取几何对象和字段值，批量更新到 example 数据集中
 //        editor.begin();
-		
 		double  [][]dataList = {{22,116,36},{10,110,22}};
 		
 		if(null!=wzTFLsljsList&&wzTFLsljsList.size()>0){
@@ -116,7 +116,6 @@ public class MapUtils {
 					if (radiusN<=0){
 						continue;
 					}
-					
 					double distance =  getDistance(wzTFLslj);
 					radiusN = radiusN*1000/distance;
 					
