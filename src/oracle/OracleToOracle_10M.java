@@ -19,7 +19,7 @@ public class OracleToOracle_10M {
 //           Class.forName("oracle.jdbc.OracleDriver");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
            
-           connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol_freeze", "riskcontrol_freeze");           
+            connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol_freeze", "riskcontrol_freeze");           
 
           
            System.out.println(connect);  
