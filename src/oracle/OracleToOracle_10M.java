@@ -2,10 +2,11 @@ package oracle;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import common.JdbcUtils;
 
 
 public class OracleToOracle_10M {
@@ -17,23 +18,19 @@ public class OracleToOracle_10M {
         ResultSet resultSet = null;
 		try {
 //           Class.forName("oracle.jdbc.OracleDriver");
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-           
-            connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol_freeze", "riskcontrol_freeze");           
-
-          
-           System.out.println(connect);  
+			// 进行参数连接
+			connect = JdbcUtils.getJdbcConnection();
+			
+            System.out.println(connect);  
            
 //         statement = connect.createStatement();
           
            String sql = "select * from SMDTV_21 ";
 //           PreparedStatement preState = connect.prepareStatement("select  * from tb1_dept where id = ?");
            preState = connect.prepareStatement(sql);
-
-
            
-//           resultSet = statement.executeQuery("select  * from RISKINFO_CLAIM where SERIALNO ='26'");
-//           resultSet = statement.executeQuery("select * from SMDTV_45 where SMID=3");
+//         resultSet = statement.executeQuery("select  * from RISKINFO_CLAIM where SERIALNO ='26'");
+//         resultSet = statement.executeQuery("select * from SMDTV_45 where SMID=3");
            	
            resultSet = preState.executeQuery();        
 
@@ -74,13 +71,8 @@ public class OracleToOracle_10M {
        } catch (Exception e) {
            e.printStackTrace();
        }finally {
-               try {
-                   if (resultSet!=null) resultSet.close();
-                   if (preState!=null) preState.close();
-                   if (connect!=null) connect.close();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
+    	   /* 关闭数据库资源*/
+    	   JdbcUtils.closeResource( resultSet, preState,connect);
        }
 	}
 //	public static void 	insertData(Integer SMID,Integer SMKEY,BigDecimal SMSDRIW,BigDecimal SMSDRIN,BigDecimal SMSDRIE,
@@ -96,8 +88,8 @@ public class OracleToOracle_10M {
 		PreparedStatement preState = null;
 		ResultSet resultSet = null;
 		 try {
-			 Class.forName("oracle.jdbc.driver.OracleDriver");
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@10.10.68.248:1521:orcl", "riskcontrol", "riskcontrol");
+			 // 进行参数连接
+			connect = common.JdbcUtils.getJdbcConnection();
 
 			String sql = "insert into SMDTV_172(SMID,SMKEY,SMSDRIW,SMSDRIN,SMSDRIE,SMSDRIS,SMGRANULE,SMGEOMETRY,SMUSERID,SMLIBTILEID,SMAREA,SMPERIMETER,"
 					+ "ADMINCODE,KIND, NAME,PY,CITYADCODE,PROADCODE,CENTERX,CENTERY,LEVELFLAG,PROVINCENAME, CITYNAME)"
@@ -135,14 +127,8 @@ public class OracleToOracle_10M {
 		}catch (Exception e) {
 	           e.printStackTrace();
         }finally {
-               try {
-                   if (resultSet!=null) resultSet.close();
-//	                   if (statement!=null) statement.close();
-                   if (preState!=null) preState.close();
-                   if (connect!=null) connect.close();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
+        	/* 关闭数据库资源*/
+     	   JdbcUtils.closeResource( resultSet, preState,connect);
        }
 
 	}

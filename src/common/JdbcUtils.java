@@ -2,6 +2,8 @@ package common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 	/**
  * @author  作者 E-mail: 
@@ -32,6 +34,16 @@ public class JdbcUtils {
 			e.printStackTrace();
 		} 
     	return connect;
+    }
+   /* 关闭数据库资源*/
+    public static void closeResource(ResultSet resultSet,PreparedStatement preState,Connection connect){
+    	 try {
+             if (resultSet!=null) resultSet.close();
+             if (preState!=null) preState.close();
+             if (connect!=null) connect.close();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
     }
     
     
