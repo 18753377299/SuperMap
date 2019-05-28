@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @return  */
 public class JdbcUtils {
 	//连接参数获取
-    private static final String oracleDriver,oracleUrl,javaUser,javaPassword;
+	private static final String oracleDriver,oracleUrl,javaUser,javaPassword;
     
     static {
 		 // 定义数据源连接信息，假设以下所有数据源设置都存在
@@ -21,18 +21,20 @@ public class JdbcUtils {
 		javaUser =  "riskcontrol";
 		javaPassword =  "riskcontrol";
     }
+    
     /*进行oracle数据库的连接*/
     public static Connection getJdbcConnection(){
-    	
     	Connection connect = null;
     	try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(oracleDriver);
 			connect = DriverManager.getConnection(oracleUrl, javaUser, javaPassword);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} 
     	return connect;
     }
+    
+    
     
     
     
