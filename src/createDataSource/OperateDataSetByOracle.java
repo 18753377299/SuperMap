@@ -113,7 +113,7 @@ public class OperateDataSetByOracle {
 		// 定义数据源连接信息，假设以下所有数据源设置都存在
 	    DatasourceConnectionInfo datasourceconnection = new  DatasourceConnectionInfo();
 		//进行数据源的连接
-		Datasource datasource =MapUtils.connectDataSource(workspace,datasourceconnection,iobjectJavaServer,iobjectJavaDatabase,iobjectJavaUser,iobjectJavaPassword);
+		Datasource datasource =MapUtils.connectDataSource(workspace,datasourceconnection);
 	    // 创建面数据集
 		String dataSetName_7 = "TF_7M",dataSetName_10="TF_10M";
 		// 创建七级风圈数据集

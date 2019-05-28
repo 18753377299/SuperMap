@@ -6,7 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,12 +43,29 @@ import com.supermap.data.Workspace;
  * @return  */
 
 public class MapUtils {
-	
+	//连接参数获取
+    private static final String iobjectJavaServer,iobjectJavaDatabase,iobjectJavaUser,iobjectJavaPassword;
+
+    static {
+    	/*获取连接iobjectjava的数据信息*/
+//		ResourceBundle filePath = ResourceBundle.getBundle("config.map", Locale.getDefault());
+		 // 定义数据源连接信息，假设以下所有数据源设置都存在
+		iobjectJavaServer = "10.10.68.248:1521/orcl";
+		iobjectJavaDatabase = "riskcontrol";
+		iobjectJavaUser =  "riskcontrol";
+		iobjectJavaPassword =  "riskcontrol";
+		
+//		iobjectJavaServer = filePath.getString("iobjectJavaServer");
+//		iobjectJavaDatabase = filePath.getString("iobjectJavaDatabase");
+//		iobjectJavaUser = filePath.getString("iobjectJavaUser");
+//		iobjectJavaPassword = filePath.getString("iobjectJavaPassword");
+    }
 	
 	/**连接数据源*/
-	public static Datasource connectDataSource(Workspace workspace,DatasourceConnectionInfo datasourceconnection,
-			String iobjectJavaServer,String iobjectJavaDatabase,String iobjectJavaUser,String iobjectJavaPassword){
-		
+//	public static Datasource connectDataSource(Workspace workspace,DatasourceConnectionInfo datasourceconnection,
+//			String iobjectJavaServer,String iobjectJavaDatabase,String iobjectJavaUser,String iobjectJavaPassword){
+	public static Datasource connectDataSource(Workspace workspace,DatasourceConnectionInfo datasourceconnection){
+	
 		   datasourceconnection.setEngineType(EngineType.ORACLEPLUS);
 	       datasourceconnection.setServer(iobjectJavaServer);
 	       datasourceconnection.setDatabase(iobjectJavaDatabase);

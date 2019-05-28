@@ -39,7 +39,7 @@ public class OperateGeometryUnion {
 		// 定义数据源连接信息，假设以下所有数据源设置都存在
 	    DatasourceConnectionInfo datasourceconnection = new  DatasourceConnectionInfo();
 		//进行数据源的连接
-		Datasource datasource =MapUtils.connectDataSource(workspace,datasourceconnection,iobjectJavaServer,iobjectJavaDatabase,iobjectJavaUser,iobjectJavaPassword);
+		Datasource datasource =MapUtils.connectDataSource(workspace,datasourceconnection);
 		// 获取的面数据集
 //		TF_7M
 	    DatasetVector datasetVector_7 = (DatasetVector)datasource.getDatasets().get("TF_7M");
