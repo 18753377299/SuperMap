@@ -15,17 +15,9 @@ import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.StreamUtils;
 
-import com.alibaba.fastjson.JSON;
-import com.picc.riskctrl.map.vo.response.GridValue;
+import vo.GridValue;
 	/**
  * @author  作者 E-mail: 
  * @date 创建时间：2018年11月22日 下午6:11:35
