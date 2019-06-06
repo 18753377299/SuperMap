@@ -20,7 +20,8 @@ public class OperateDataSource {
 	private static final  String  iobjectJavaServer = "10.10.68.248:1521/orcl";
 	private static final  String  iobjectJavaDatabase = "riskcontrol";
 	private static final  String  iobjectJavaUser = "riskcontrol";
-	private static final  String  iobjectJavaPassword = "riskcontrol";
+//	private static final  String  iobjectJavaPassword = "riskcontrol";
+	private static final  String  iobjectJavaPassword = "7269736b636f6e74726f6c";;
 	private static final  String  riskMap_address  = "SMDTV_60";
 	
 	public static void main(String []args){
@@ -31,7 +32,7 @@ public class OperateDataSource {
 //		createDataSource();
 		
 		/*创建面数据集*/
-		createDataSet();
+//		createDataSet();
 		
 	}
 	/*创建面数据集*/
@@ -89,6 +90,7 @@ public class OperateDataSource {
       datasourceconnection.setServer(iobjectJavaServer);
       datasourceconnection.setDatabase(iobjectJavaDatabase);
       datasourceconnection.setUser(iobjectJavaUser); // riskcontrol_freeze
+//      datasourceconnection.setPassword(iobjectJavaPassword);
       datasourceconnection.setPassword(iobjectJavaPassword);
       datasourceconnection.setAlias("ORACLE");
       // 打开数据源

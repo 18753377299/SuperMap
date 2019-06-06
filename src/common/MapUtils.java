@@ -6,9 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -34,6 +32,8 @@ import com.supermap.data.PrjCoordSysType;
 import com.supermap.data.Recordset;
 import com.supermap.data.Workspace;
 
+import encode.EncryptSecretInfo;
+
 	/**
  * @author  作者 E-mail: 
  * @date 创建时间：2019年5月8日 下午5:31:18
@@ -53,7 +53,9 @@ public class MapUtils {
 		iobjectJavaServer = "10.10.68.248:1521/orcl";
 		iobjectJavaDatabase = "riskcontrol";
 		iobjectJavaUser =  "riskcontrol";
-		iobjectJavaPassword =  "riskcontrol";
+//		iobjectJavaPassword =  "riskcontrol";
+		iobjectJavaPassword =  "506963635f323031397269736b";
+		
 		
 //		iobjectJavaServer = filePath.getString("iobjectJavaServer");
 //		iobjectJavaDatabase = filePath.getString("iobjectJavaDatabase");
@@ -70,7 +72,8 @@ public class MapUtils {
 	       datasourceconnection.setServer(iobjectJavaServer);
 	       datasourceconnection.setDatabase(iobjectJavaDatabase);
 	       datasourceconnection.setUser(iobjectJavaUser); // riskcontrol_freeze
-	       datasourceconnection.setPassword(iobjectJavaPassword);
+//	       datasourceconnection.setPassword(iobjectJavaPassword);
+	       datasourceconnection.setPassword(EncryptSecretInfo.decodeSecretInfo(iobjectJavaPassword));
 		   datasourceconnection.setAlias("ORACLE");
 	      // 打开数据源
 	      Datasource datasource = workspace.getDatasources().open(datasourceconnection);
