@@ -61,7 +61,7 @@ public class MapUtils {
 //		iobjectJavaDatabase = filePath.getString("iobjectJavaDatabase");
 //		iobjectJavaUser = filePath.getString("iobjectJavaUser");
 //		iobjectJavaPassword = filePath.getString("iobjectJavaPassword");
-    }
+    } 
 	
 	/**连接数据源*/
 //	public static Datasource connectDataSource(Workspace workspace,DatasourceConnectionInfo datasourceconnection,

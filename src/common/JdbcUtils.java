@@ -13,6 +13,7 @@ import java.sql.SQLException;
  * @since  
  * @return  */
 public class JdbcUtils {
+	
 	//连接参数获取
 	private static final String oracleDriver,oracleUrl,javaUser,javaPassword;
     
@@ -35,6 +36,7 @@ public class JdbcUtils {
 		} 
     	return connect;
     }
+    
    /* 关闭数据库资源*/
     public static void closeResource(ResultSet resultSet,PreparedStatement preState,Connection connect){
     	 try {
