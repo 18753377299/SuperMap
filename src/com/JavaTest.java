@@ -11,7 +11,8 @@ import com.supermap.data.Workspace;
 
 public class JavaTest {
 	public static void main(String[] args) {
-		System.out.println("before-success!");
+		System.out.println("before-success11!");
+		
 		long start = System.currentTimeMillis();
 		new Workspace();
 		long end = System.currentTimeMillis();
